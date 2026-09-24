@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiệp mời Lễ Tốt Nghiệp - Cherricott</title>
+<meta name="description" content="Trân trọng kính mời bạn đến chung vui tại Lễ Tốt Nghiệp - Đại học Bách Khoa Hà Nội (27/09/2026).">
+<!-- Open Graph / Facebook / Zalo / Messenger -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thiệp mời Lễ Tốt Nghiệp - Cherricott">
+<meta property="og:description" content="Trân trọng kính mời bạn đến chung vui tại Lễ Tốt Nghiệp - Đại học Bách Khoa Hà Nội (27/09/2026).">
+<meta property="og:image" content="../Yuxikittylook1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+  :root {
+    --emerald: #0C332E;
+    --emerald-deep: #05201D;
+    --emerald-darkest: #030F0D;
+    --cream: #FAF6EC;
+    --gold: #C6A15B;
+    --gold-soft: #E4CE9C;
+    --ink: #2A3530;
+    --line: rgba(198, 161, 91, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--emerald-darkest);
+    color: var(--ink);
+    font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 16px;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(198,161,91,0.09) 0, transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(198,161,91,0.07) 0, transparent 45%),
+      linear-gradient(170deg, var(--emerald) 0%, var(--emerald-darkest) 65%, #010807 100%);
+  }
+
+  .frame-outer {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .vine-corner { position: absolute; width: 58px; height: 58px; z-index: 3; pointer-events: none; }
+  .vine-corner.tl { top: -14px; left: -14px; }
+  .vine-corner.tr { top: -14px; right: -14px; transform: scaleX(-1); }
+  .vine-corner.bl { bottom: -14px; left: -14px; transform: scaleY(-1); }
+  .vine-corner.br { bottom: -14px; right: -14px; transform: scale(-1,-1); }
+
+  .card {
+    position: relative;
+    background: #FAF6EC;
+    padding: 46px 38px 40px;
+    text-align: center;
+    z-index: 2;
+    border: 1px solid var(--gold);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.7);
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+  }
+
+  .card .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    transform: translate(-50%, -50%);
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .card > * { position: relative; z-index: 1; }
+
+  .crest {
+    width: 54px;
+    margin: 0 auto 18px;
+    display: block;
+  }
+
+  .photo-frame {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 0 6px var(--cream), 0 0 0 7px var(--line);
+    background: #F1EADA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-frame .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: var(--gold);
+  }
+
+  .photo-frame .placeholder .plus {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .photo-frame .placeholder .label {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #8A7A55;
+  }
+
+  .photo-input {
+    display: none;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+
+  h1.headline {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: clamp(32px, 7vw, 42px);
+    line-height: 1.15;
+    margin: 0 0 4px;
+    color: #05201D;
+  }
+
+  .year {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .name {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: clamp(26px, 6vw, 30px);
+    color: #05201D;
+    margin: 20px 0 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .major {
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    color: #6B7A72;
+    margin: 0 0 26px;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: var(--gold);
+  }
+  .ornament .rule {
+    height: 1px;
+    width: 56px;
+    background: var(--line);
+  }
+  .ornament svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  .details {
+    display: grid;
+    gap: 12px;
+    margin: 4px 0 28px;
+    text-align: left;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border-top: 1px solid var(--line);
+    padding: 12px 2px 0;
+  }
+
+  .detail-row .label {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #8A7A55;
+    margin: 0 0 3px;
+    min-width: 74px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .detail-row .value {
+    font-size: 16px;
+    margin: 0;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .message {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.65;
+    color: #3A4640;
+    margin: 0 0 30px;
+    padding: 0 6px;
+  }
+
+  .cta {
+    display: inline-block;
+    background: var(--emerald-deep);
+    color: var(--gold-soft);
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 34px;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .cta:hover {
+    background: var(--gold);
+    color: var(--emerald-deep);
+  }
+
+  .footer-note {
+    margin-top: 22px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8A7A55;
+  }
+
+  .footer-note .phone {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #6B7A72;
+  }
+
+  @media (max-width: 380px) {
+    .card { padding: 36px 22px 32px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card { animation: reveal 0.7s ease both; }
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame-outer">
+
+  <svg class="vine-corner tl" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+    <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+    <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+  </svg>
+  <svg class="vine-corner tr" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+    <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+    <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+  </svg>
+  <svg class="vine-corner bl" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+    <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+    <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+  </svg>
+  <svg class="vine-corner br" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+    <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+    <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+    <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+  </svg>
+
+  <div class="card">
+
+    <svg class="watermark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="94" fill="none" stroke="#0E3B36" stroke-width="1"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#0E3B36" stroke-width="1"/>
+      <g stroke="#0E3B36" stroke-width="1" fill="none">
+        <path d="M100 20 C60 40 60 100 100 100 C140 100 140 40 100 20Z"/>
+        <path d="M100 180 C60 160 60 100 100 100 C140 100 140 160 100 180Z"/>
+        <path d="M20 100 C40 60 100 60 100 100 C100 140 40 140 20 100Z"/>
+        <path d="M180 100 C160 60 100 60 100 100 C100 140 160 140 180 100Z"/>
+      </g>
+    </svg>
+
+    <svg class="crest" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,8 92,28 50,48 8,28" fill="none" stroke="#C6A15B" stroke-width="2"/>
+      <polygon points="50,48 74,37 74,58 50,69" fill="none" stroke="#C6A15B" stroke-width="2"/>
+      <line x1="50" y1="48" x2="50" y2="69" stroke="#C6A15B" stroke-width="2"/>
+      <circle cx="88" cy="32" r="2" fill="#C6A15B"/>
+      <line x1="88" y1="32" x2="88" y2="52" stroke="#C6A15B" stroke-width="1.5"/>
+      <circle cx="88" cy="55" r="3" fill="#C6A15B"/>
+    </svg>
+
+    <p class="eyebrow">Trân trọng kính mời</p>
+    <h1 class="headline">Lễ Tốt Nghiệp <span class="year">2026</span></h1>
+
+    <label class="photo-frame" id="photoFrame" for="photoInput" title="Bấm để xem thử ảnh khác (hoặc thay file ../Yuxikittylook1.png)">
+      <img src="../Yuxikittylook1.png" alt="Ảnh tốt nghiệp - Cherricott" id="photoImg">
+    </label>
+    <input class="photo-input" type="file" id="photoInput" accept="image/*">
+
+    <p class="name">Cherricott</p>
+    <p class="major">DS &amp AI, School of Information &amp; Communications Technology&nbsp;·&nbsp;HUST</p>
+
+    <div class="ornament">
+      <span class="rule"></span>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2 C14 7 17 10 22 12 C17 14 14 17 12 22 C10 17 7 14 2 12 C7 10 10 7 12 2Z" stroke="#C6A15B" stroke-width="1"/>
+      </svg>
+      <span class="rule"></span>
+    </div>
+
+    <div class="details">
+      <div class="detail-row">
+        <p class="label">Ngày</p>
+        <p class="value">27/09/2026</p>
+      </div>
+      <div class="detail-row">
+        <p class="label">Giờ</p>
+        <p class="value">9:00 – 12:00</p>
+      </div>
+      <div class="detail-row">
+        <p class="label">Địa điểm</p>
+        <p class="value">Đại học Bách Khoa Hà Nội</p>
+      </div>
+    </div>
+
+    <p class="message">
+      Sau những năm tháng miệt mài học tập, hành trình ấy nay đã đến chặng cuối.
+      Rất hân hạnh được đón tiếp bạn tới chung vui trong buổi lễ đặc biệt này.
+    </p>
+
+    <a class="cta" href="mailto:?subject=Xac%20nhan%20tham%20du%20le%20tot%20nghiep&body=Minh%20se%20den%20chung%20vui%20cung%20ban!">
+      Xác nhận tham dự
+    </a>
+
+    <p class="footer-note">
+      Cherricott
+      <span class="phone">Liên hệ: 0327 282 656</span>
+    </p>
+  </div>
+</div>
+
+<script>
+  const photoInput = document.getElementById('photoInput');
+  const photoImg = document.getElementById('photoImg');
+  if (photoInput && photoImg) {
+    photoInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        photoImg.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+</script>
+
+</body>
+</html>

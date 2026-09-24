@@ -1,25 +1,20 @@
-# 🎓 Thiệp Mời Lễ Tốt Nghiệp - Phạm Long Hải
+# 🎓 Thiệp Mời Lễ Tốt Nghiệp
 
 Thiệp mời Lễ Tốt Nghiệp trực tuyến dành cho gia đình, thầy cô và bạn bè.
 
-- **Chủ nhân:** Phạm Long Hải (DS & AI - Đại học Bách Khoa Hà Nội)
 - **Thời gian:** 9:00 – 12:00 | Ngày 27/09/2026
 - **Địa điểm:** Đại học Bách Khoa Hà Nội
+- **Ngành:** DS & AI, School of Information & Communications Technology · HUST
 
 ---
 
-## 🌐 Xuất bản Website với GitHub Pages (`.github.io`)
+## 🔗 Danh Sách Đường Link Thiệp
 
-1. Tạo repository mới trên GitHub: `thiep-tot-nghiep` (chọn Public).
-2. Đẩy code lên GitHub:
-   ```bash
-   git remote add origin https://github.com/Cherricott/thiep-tot-nghiep.git
-   git push -u origin main
-   ```
-3. Vào **Settings** > **Pages**:
-   - Ở mục **Source**: Chọn `Deploy from a branch`
-   - Ở mục **Branch**: Chọn `main` và thư mục `/ (root)` > Bấm **Save**.
-4. Đường link website sẽ là:
-   ```
-   https://Cherricott.github.io/thiep-tot-nghiep/
-   ```
+1. **Thiệp 1 (Phạm Long Hải):**
+   - Link chính: [`https://Cherricott.github.io/GraduationLetter/`](https://Cherricott.github.io/GraduationLetter/)
+   - Ảnh đại diện: Ảnh tốt nghiệp chính thức (`avatar.jpg`)
+
+2. **Thiệp 2 (Cherricott):**
+   - Link: [`https://Cherricott.github.io/GraduationLetter/cherricott`](https://Cherricott.github.io/GraduationLetter/cherricott) (hoặc [`cherricott.html`](https://Cherricott.github.io/GraduationLetter/cherricott.html))
+   - Ảnh đại diện: `Yuxikittylook1.png`
+   - Tên: **Cherricott**
