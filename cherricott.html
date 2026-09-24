@@ -291,9 +291,262 @@
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  /* === OPENER / ENVELOPE OVERLAY === */
+  .opener-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(198,161,91,0.18) 0%, transparent 60%),
+      radial-gradient(circle at 15% 85%, rgba(12,51,46,0.6) 0%, transparent 50%),
+      linear-gradient(175deg, #092C27 0%, #031412 60%, #010807 100%);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s;
+    overflow-y: auto;
+  }
+  .opener-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .opener-overlay.opening .envelope-wrap {
+    transform: scale(0.92) translateY(-25px);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+
+  .confetti-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1001;
+  }
+
+  .envelope-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    animation: envFloat 4s ease-in-out infinite;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  @keyframes envFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .envelope-card {
+    position: relative;
+    background: #FAF6EC;
+    padding: 42px 32px 36px;
+    text-align: center;
+    border: 1px solid var(--gold);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.8), 0 0 50px rgba(198,161,91,0.22);
+    overflow: hidden;
+  }
+  .envelope-card::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+  }
+
+  .env-crest {
+    width: 48px;
+    margin: 0 auto 12px;
+    display: block;
+    animation: crestShimmer 3s ease-in-out infinite alternate;
+  }
+  @keyframes crestShimmer {
+    from { filter: drop-shadow(0 0 2px rgba(198,161,91,0.3)); }
+    to { filter: drop-shadow(0 0 10px rgba(198,161,91,0.7)); }
+  }
+
+  .env-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 8px;
+  }
+  .env-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(26px, 6vw, 32px);
+    line-height: 1.2;
+    margin: 0 0 6px;
+    color: #05201D;
+    font-weight: 600;
+  }
+  .env-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-style: italic;
+    margin: 0 0 14px;
+    letter-spacing: 0.5px;
+  }
+  .env-for {
+    font-size: 13px;
+    color: #6B7A72;
+    margin: 0 0 26px;
+    letter-spacing: 0.3px;
+  }
+
+  .seal-btn-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .seal-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0C332E 0%, #05201D 100%);
+    color: var(--gold-soft);
+    padding: 15px 32px;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .seal-btn:hover {
+    transform: translateY(-2px);
+    background: var(--gold);
+    color: var(--emerald-deep);
+    box-shadow: 0 16px 36px rgba(198,161,91,0.45);
+  }
+  .seal-btn:active {
+    transform: translateY(0);
+  }
+  .seal-pulse {
+    position: absolute;
+    inset: -6px;
+    border: 1px solid var(--gold);
+    opacity: 0;
+    pointer-events: none;
+    animation: sealPulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  }
+  @keyframes sealPulse {
+    0% { transform: scale(0.96); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 0; }
+    100% { transform: scale(1.08); opacity: 0; }
+  }
+
+  .env-hint {
+    margin: 18px 0 0;
+    font-size: 11px;
+    color: #8A7A55;
+    letter-spacing: 1px;
+  }
+
+  .reopen-badge {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #8A7A55;
+    background: rgba(198,161,91,0.1);
+    border: 1px solid rgba(198,161,91,0.3);
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .reopen-badge:hover {
+    background: rgba(198,161,91,0.22);
+    color: #05201D;
+    border-color: var(--gold);
+  }
+
+  .card.emerging {
+    animation: cardEmerge 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes cardEmerge {
+    0% { opacity: 0; transform: scale(0.9) translateY(28px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
 </style>
 </head>
 <body>
+
+<!-- Opener / Envelope Overlay -->
+<div class="opener-overlay" id="openerOverlay">
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+  <div class="envelope-wrap" id="envelopeWrap">
+    <svg class="vine-corner tl" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+      <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+      <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+    </svg>
+    <svg class="vine-corner tr" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+      <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+      <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+    </svg>
+    <svg class="vine-corner bl" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+      <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+      <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+    </svg>
+    <svg class="vine-corner br" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
+      <path d="M2 20 C10 20 16 24 18 32" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <path d="M20 2 C20 10 24 16 32 18" stroke="#C6A15B" stroke-width="1" opacity="0.7"/>
+      <circle cx="2" cy="30" r="2" fill="#C6A15B"/>
+      <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
+    </svg>
+
+    <div class="envelope-card">
+      <svg class="crest env-crest" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,8 92,28 50,48 8,28" fill="none" stroke="#C6A15B" stroke-width="2"/>
+        <polygon points="50,48 74,37 74,58 50,69" fill="none" stroke="#C6A15B" stroke-width="2"/>
+        <line x1="50" y1="48" x2="50" y2="69" stroke="#C6A15B" stroke-width="2"/>
+        <circle cx="88" cy="32" r="2" fill="#C6A15B"/>
+        <line x1="88" y1="32" x2="88" y2="52" stroke="#C6A15B" stroke-width="1.5"/>
+        <circle cx="88" cy="55" r="3" fill="#C6A15B"/>
+      </svg>
+      <p class="env-eyebrow">GRADUATION INVITATION</p>
+      <h2 class="env-title">Lễ Tốt Nghiệp <span class="year">2026</span></h2>
+      <p class="env-name">Cherricott</p>
+      <p class="env-for">Trân trọng gửi tới bạn lời mời chung vui</p>
+
+      <div class="seal-btn-wrapper">
+        <button class="seal-btn" id="openBtn" type="button">
+          <span class="seal-pulse"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          <span>Chạm để mở thiệp</span>
+        </button>
+      </div>
+      <p class="env-hint">✨ Chạm để mở bức thư ✨</p>
+    </div>
+  </div>
+</div>
 
 <div class="frame-outer">
 
@@ -326,7 +579,7 @@
     <circle cx="30" cy="2" r="2" fill="#C6A15B"/>
   </svg>
 
-  <div class="card">
+  <div class="card" id="mainCard">
 
     <svg class="watermark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <circle cx="100" cy="100" r="94" fill="none" stroke="#0E3B36" stroke-width="1"/>
@@ -395,10 +648,21 @@
       Cherricott
       <span class="phone">Liên hệ: 0327 282 656</span>
     </p>
+
+    <div>
+      <button class="reopen-badge" id="reopenBtn" type="button" title="Mở lại phong bì">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        Mở lại phong bì
+      </button>
+    </div>
   </div>
 </div>
 
 <script>
+  // Photo input handler
   const photoInput = document.getElementById('photoInput');
   const photoImg = document.getElementById('photoImg');
   if (photoInput && photoImg) {
@@ -410,6 +674,100 @@
         photoImg.src = ev.target.result;
       };
       reader.readAsDataURL(file);
+    });
+  }
+
+  // Confetti Particle Effect
+  function fireConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#C6A15B', '#E4CE9C', '#FAF6EC', '#0C332E', '#E0B568', '#FFFFFF', '#145A51'];
+    const particles = [];
+    const count = Math.min(85, Math.max(45, Math.floor(window.innerWidth / 9)));
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: canvas.width / 2 + (Math.random() - 0.5) * 80,
+        y: canvas.height / 2 + (Math.random() - 0.5) * 60,
+        w: Math.random() * 9 + 5,
+        h: Math.random() * 6 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 16,
+        vy: (Math.random() - 1.2) * 14 - 3,
+        rotation: Math.random() * 360,
+        vRot: (Math.random() - 0.5) * 12,
+        opacity: 1
+      });
+    }
+
+    let startTime = null;
+    function animate(time) {
+      if (!startTime) startTime = time;
+      const elapsed = time - startTime;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      let alive = false;
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.32; // gravity
+        p.vx *= 0.98; // air drag
+        p.rotation += p.vRot;
+        if (elapsed > 1800) {
+          p.opacity -= 0.016;
+        }
+        if (p.opacity > 0 && p.y < canvas.height + 50) {
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+      });
+
+      if (alive && elapsed < 4000) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // Opener Logic
+  const openBtn = document.getElementById('openBtn');
+  const openerOverlay = document.getElementById('openerOverlay');
+  const mainCard = document.getElementById('mainCard');
+  const reopenBtn = document.getElementById('reopenBtn');
+
+  function openCard() {
+    openerOverlay.classList.add('opening');
+    fireConfetti();
+    setTimeout(() => {
+      openerOverlay.classList.add('hidden');
+      if (mainCard) {
+        mainCard.classList.remove('emerging');
+        void mainCard.offsetWidth; // trigger reflow
+        mainCard.classList.add('emerging');
+      }
+    }, 550);
+  }
+
+  if (openBtn) {
+    openBtn.addEventListener('click', openCard);
+  }
+
+  if (reopenBtn) {
+    reopenBtn.addEventListener('click', () => {
+      openerOverlay.classList.remove('hidden', 'opening');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 </script>
