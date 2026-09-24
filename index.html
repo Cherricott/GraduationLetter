@@ -482,13 +482,207 @@
     0% { opacity: 0; transform: scale(0.9) translateY(28px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
   }
+
+  /* === THANK YOU MODAL & EXPLOSION EFFECTS === */
+  .thankyou-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(3, 15, 13, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .thankyou-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .thankyou-card {
+    position: relative;
+    background: #FAF6EC;
+    padding: 38px 28px 30px;
+    max-width: 390px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--gold);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.85), 0 0 50px rgba(198,161,91,0.28);
+    transform: scale(0.88) translateY(24px);
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .thankyou-overlay.show .thankyou-card {
+    transform: scale(1) translateY(0);
+  }
+  .thankyou-card::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+  }
+  .thankyou-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    line-height: 1;
+    color: #8A7A55;
+    cursor: pointer;
+    z-index: 2;
+    padding: 4px 8px;
+    transition: color 0.2s;
+  }
+  .thankyou-close:hover {
+    color: var(--emerald);
+  }
+  .thankyou-icon {
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 8px;
+    display: inline-block;
+    animation: iconPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes iconPop {
+    0% { transform: scale(0) rotate(-20deg); }
+    100% { transform: scale(1) rotate(0); }
+  }
+  .thankyou-sub {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .thankyou-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    color: #05201D;
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .thankyou-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 16px;
+    width: 60%;
+  }
+  .thankyou-divider span {
+    height: 1px;
+    background: var(--line);
+    flex: 1;
+  }
+  .thankyou-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #3A4640;
+    margin: 0 0 16px;
+  }
+  .thankyou-box {
+    background: rgba(12,51,46,0.06);
+    border: 1px dashed rgba(198,161,91,0.5);
+    padding: 12px 14px;
+    margin: 0 0 16px;
+    font-size: 12px;
+    color: #0C332E;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .thankyou-box p { margin: 0; }
+  .thankyou-sign {
+    font-size: 13px;
+    color: #6B7A72;
+    margin: 0 0 20px;
+    font-style: italic;
+  }
+  .thankyou-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .thankyou-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .thankyou-btn.primary {
+    background: var(--emerald-deep);
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
+  }
+  .thankyou-btn.primary:hover {
+    background: var(--gold);
+    color: var(--emerald-deep);
+  }
+  .thankyou-btn.secondary {
+    background: transparent;
+    color: #6B7A72;
+    border: 1px solid rgba(198,161,91,0.5);
+  }
+  .thankyou-btn.secondary:hover {
+    background: rgba(198,161,91,0.15);
+    color: var(--emerald-deep);
+  }
+
+  /* Screen shake for explosion */
+  .shake-screen {
+    animation: bigExplosionShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  @keyframes bigExplosionShake {
+    10%, 90% { transform: translate3d(-4px, 2px, 0); }
+    20%, 80% { transform: translate3d(5px, -4px, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 5px, 0); }
+    40%, 60% { transform: translate3d(6px, -5px, 0); }
+  }
+
+  /* Flash overlay for big explosion */
+  .flash-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,245,210,0.85) 0%, rgba(198,161,91,0.4) 50%, transparent 80%);
+    z-index: 1003;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+  }
+  .flash-overlay.flashing {
+    opacity: 1;
+    transition: none;
+  }
+
+  /* CTA Button state when confirmed */
+  .cta.confirmed {
+    background: #0E443D !important;
+    border-color: #C6A15B !important;
+    color: #E4CE9C !important;
+    box-shadow: 0 0 25px rgba(198, 161, 91, 0.45);
+  }
 </style>
 </head>
 <body>
 
+<canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+<div class="flash-overlay" id="flashOverlay"></div>
+
 <!-- Opener / Envelope Overlay -->
 <div class="opener-overlay" id="openerOverlay">
-  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
   <div class="envelope-wrap" id="envelopeWrap">
     <svg class="vine-corner tl" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M2 30 C2 12 12 2 30 2" stroke="#C6A15B" stroke-width="1.3"/>
@@ -640,9 +834,9 @@
       Rất hân hạnh được đón tiếp bạn tới chung vui trong buổi lễ đặc biệt này.
     </p>
 
-    <a class="cta" href="mailto:?subject=Xac%20nhan%20tham%20du%20le%20tot%20nghiep&body=Minh%20se%20den%20chung%20vui%20cung%20ban!">
+    <button class="cta" id="rsvpBtn" type="button">
       Xác nhận tham dự
-    </a>
+    </button>
 
     <p class="footer-note">
       Phạm Long Hải
@@ -657,6 +851,33 @@
         </svg>
         Mở lại phong bì
       </button>
+    </div>
+  </div>
+</div>
+
+<!-- Thank You Modal -->
+<div class="thankyou-overlay" id="thankYouModal">
+  <div class="thankyou-card">
+    <button class="thankyou-close" id="closeThankYou" type="button" aria-label="Đóng">&times;</button>
+    <div class="thankyou-icon">🎓</div>
+    <p class="thankyou-sub">THANK YOU SO MUCH</p>
+    <h3 class="thankyou-title">Cảm Ơn Bạn Rất Nhiều!</h3>
+    <div class="thankyou-divider">
+      <span></span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 2 C14 7 17 10 22 12 C17 14 14 17 12 22 C10 17 7 14 2 12 C7 10 10 7 12 2Z" stroke="#C6A15B" stroke-width="1.5"/></svg>
+      <span></span>
+    </div>
+    <p class="thankyou-desc">
+      Sự hiện diện của bạn chính là niềm vinh hạnh và món quà ý nghĩa nhất đối với mình trong ngày lễ tốt nghiệp này.
+    </p>
+    <div class="thankyou-box">
+      <p class="tb-date">📅 <strong>27/09/2026</strong> · 9:00 – 12:00</p>
+      <p class="tb-loc">📍 Đại học Bách Khoa Hà Nội</p>
+    </div>
+    <p class="thankyou-sign">Hẹn gặp bạn trong buổi lễ chung vui nhé! ❤️<br><strong style="color: #05201D; font-size: 15px;">Phạm Long Hải</strong></p>
+    <div class="thankyou-actions">
+      <button class="thankyou-btn primary" id="okThankYou" type="button">Hẹn gặp lại bạn!</button>
+      <a class="thankyou-btn secondary" href="mailto:?subject=Xac%20nhan%20tham%20du%20le%20tot%20nghiep&body=Minh%20se%20den%20chung%20vui%20cung%20ban!">Gửi lời nhắn riêng</a>
     </div>
   </div>
 </div>
@@ -739,6 +960,179 @@
       }
     }
     requestAnimationFrame(animate);
+  }
+
+  // Grand Fireworks & Confetti Explosion for RSVP
+  function fireGrandExplosion() {
+    const canvas = document.getElementById('confettiCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Screen Flash effect
+    const flash = document.getElementById('flashOverlay');
+    if (flash) {
+      flash.classList.add('flashing');
+      setTimeout(() => flash.classList.remove('flashing'), 140);
+    }
+
+    // Screen Shake effect
+    const frame = document.querySelector('.frame-outer');
+    if (frame) {
+      frame.classList.remove('shake-screen');
+      void frame.offsetWidth; // trigger reflow
+      frame.classList.add('shake-screen');
+      setTimeout(() => frame.classList.remove('shake-screen'), 500);
+    }
+
+    const colors = [
+      '#C6A15B', '#E4CE9C', '#FAF6EC', '#0C332E', '#E0B568',
+      '#FFFFFF', '#55D499', '#FFE082', '#FFD54F', '#072E29', '#E65100'
+    ];
+    const particles = [];
+
+    // Origin 1: Center blast (from RSVP button)
+    const btn = document.getElementById('rsvpBtn');
+    const btnRect = btn ? btn.getBoundingClientRect() : { left: canvas.width / 2, top: canvas.height * 0.7, width: 0, height: 0 };
+    const cx = btnRect.left + (btnRect.width || 0) / 2;
+    const cy = btnRect.top + (btnRect.height || 0) / 2;
+
+    for (let i = 0; i < 95; i++) {
+      const angle = (Math.PI * 2 * i) / 95 + (Math.random() - 0.5) * 0.4;
+      const speed = Math.random() * 19 + 6;
+      particles.push({
+        x: cx,
+        y: cy,
+        w: Math.random() * 10 + 6,
+        h: Math.random() * 7 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 6,
+        rotation: Math.random() * 360,
+        vRot: (Math.random() - 0.5) * 16,
+        opacity: 1,
+        shape: Math.random() > 0.4 ? 'rect' : 'circle'
+      });
+    }
+
+    // Origin 2: Bottom-left cannon shooting high up-right
+    for (let i = 0; i < 55; i++) {
+      particles.push({
+        x: 20 + Math.random() * 80,
+        y: canvas.height - 20,
+        w: Math.random() * 11 + 6,
+        h: Math.random() * 7 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: Math.random() * 15 + 7,
+        vy: -(Math.random() * 18 + 15),
+        rotation: Math.random() * 360,
+        vRot: (Math.random() - 0.5) * 18,
+        opacity: 1,
+        shape: 'rect'
+      });
+    }
+
+    // Origin 3: Bottom-right cannon shooting high up-left
+    for (let i = 0; i < 55; i++) {
+      particles.push({
+        x: canvas.width - 20 - Math.random() * 80,
+        y: canvas.height - 20,
+        w: Math.random() * 11 + 6,
+        h: Math.random() * 7 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: -(Math.random() * 15 + 7),
+        vy: -(Math.random() * 18 + 15),
+        rotation: Math.random() * 360,
+        vRot: (Math.random() - 0.5) * 18,
+        opacity: 1,
+        shape: 'rect'
+      });
+    }
+
+    let startTime = null;
+    function animateExplosion(time) {
+      if (!startTime) startTime = time;
+      const elapsed = time - startTime;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      let alive = false;
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.36; // gravity
+        p.vx *= 0.98; // air drag
+        p.rotation += p.vRot;
+        if (elapsed > 2000) {
+          p.opacity -= 0.016;
+        }
+        if (p.opacity > 0 && p.y < canvas.height + 60) {
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+          if (p.shape === 'circle') {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          }
+          ctx.restore();
+        }
+      });
+
+      if (alive && elapsed < 4500) {
+        requestAnimationFrame(animateExplosion);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    requestAnimationFrame(animateExplosion);
+  }
+
+  // RSVP Confirmation & Thank You Modal Logic
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const thankYouModal = document.getElementById('thankYouModal');
+  const closeThankYou = document.getElementById('closeThankYou');
+  const okThankYou = document.getElementById('okThankYou');
+
+  function handleRSVP() {
+    // 1. Pháo giấy nổ lớn toàn màn hình + rung lắc
+    fireGrandExplosion();
+
+    // 2. Cập nhật nút xác nhận
+    if (rsvpBtn) {
+      rsvpBtn.classList.add('confirmed');
+      rsvpBtn.innerHTML = '🎉 Đã xác nhận tham dự!';
+    }
+
+    // 3. Mở khung cảm ơn sau một chút để người dùng ngắm pháo hoa
+    setTimeout(() => {
+      if (thankYouModal) {
+        thankYouModal.classList.add('show');
+      }
+    }, 450);
+  }
+
+  if (rsvpBtn) {
+    rsvpBtn.addEventListener('click', handleRSVP);
+  }
+
+  function hideThankYou() {
+    if (thankYouModal) {
+      thankYouModal.classList.remove('show');
+    }
+  }
+
+  if (closeThankYou) closeThankYou.addEventListener('click', hideThankYou);
+  if (okThankYou) okThankYou.addEventListener('click', hideThankYou);
+  if (thankYouModal) {
+    thankYouModal.addEventListener('click', (e) => {
+      if (e.target === thankYouModal) hideThankYou();
+    });
   }
 
   // Opener Logic
